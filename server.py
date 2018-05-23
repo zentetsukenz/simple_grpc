@@ -1,5 +1,6 @@
 from concurrent import futures
 import time
+import datetime
 
 import grpc
 
@@ -10,6 +11,7 @@ _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 class Ping(spec_pb2_grpc.HealthCheckServicer):
     def Ping(self, request, context):
+        print("HealthCheck server received: " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
         return spec_pb2.PingResponse(stat='Pong!')
 
 def serve():
@@ -23,5 +25,4 @@ def serve():
     except KeyboardInterrupt:
         server.stop(0)
 
-if __name__ == '__main__':
-    serve()
+serve()
