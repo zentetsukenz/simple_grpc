@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package simple_grpc;
+
+service HealthCheck {
+        rpc Ping (PingRequest) returns (PingResponse) {}
+}
+
+message PingRequest {}
+
+message PingResponse {
+        string stat = 1;
+}
